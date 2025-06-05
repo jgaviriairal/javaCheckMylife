@@ -1,20 +1,61 @@
 package org.example.accesoDatos;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import org.example.modelo.Conductor;
+
+import java.sql.*;
 
 public class ConductorCrud {
     /*Variables para la conexion a la bd
     se tien encuenta que la bd esta en construccion aun
     * */
-    private final String url = "jdbc:mysql://localhost:3306/";//queda pendiente el nombre de la BD
+    private final String url = "jdbc:mysql://localhost:3306/javacheckmylife";//queda pendiente el nombre de la BD
     private final String user ="root";
     private final String password = "";
 
     //Metodo para lla conexion a BD
     public Connection conectarBD ()throws SQLException{
         return DriverManager.getConnection(url,user,password);
+    }
+
+    public void agregarConductor (Conductor conductorNuevo){
+
+        String sql = "INSERT INTO personas (nombres, apellidos, documento, celular, usuario, contrasena, email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String cond =  "INSERT INTO conductores (id_conductor, id_persona, licencia) VALUES (?, ?, ?)";
+
+        try(
+                Connection conex = conectarBD();
+                PreparedStatement persona = conex.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement conductor = conex.prepareStatement(cond);
+
+                ){
+
+            persona.setString(1,conductorNuevo.getNombres());
+            persona.setString(2, conductorNuevo.getApellidos());
+            persona.setInt(3,conductorNuevo.getDocumento());
+            persona.setInt(4,conductorNuevo.getCelular());
+            persona.setString(5,conductorNuevo.getUsuario());
+            persona.setString(6,conductorNuevo.getContrasena());
+            persona.setString(7,conductorNuevo.getEmail());
+            persona.execute();
+
+
+            ResultSet generatedKeys = persona.getGeneratedKeys();
+            int idPersona = -1;
+            if (generatedKeys.next()) {
+                idPersona = generatedKeys.getInt(1);
+            } else {
+                throw new SQLException("No se pudo obtener el ID de la persona insertada.");
+            }
+            conductor.setInt(1,idPersona);
+            conductor.setInt(2,idPersona);
+            conductor.setString(3, conductorNuevo.getLicencia());
+            conductor.execute();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

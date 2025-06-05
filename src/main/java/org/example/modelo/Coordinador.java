@@ -5,7 +5,7 @@ public class Coordinador extends Persona implements IAsignacionRuta {
     public Coordinador() {
     }
 
-    public Coordinador(String nombres, String apellidos, Integer documento, Integer celular, String usuario, String contrasena, String repitaContrasena, String email, String area) {
+    public Coordinador(String nombres, String apellidos, Integer documento, Integer celular, String usuario, String contrasena, String email) {
         super(nombres, apellidos, documento, celular, usuario, contrasena, email);
         this.area = area;
     }

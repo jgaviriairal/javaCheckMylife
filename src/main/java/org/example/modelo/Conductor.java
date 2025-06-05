@@ -9,11 +9,17 @@ public class Conductor extends Persona implements IAsignacionRuta {
     public Conductor() {
     }
 
-    public Conductor(String nombres, String apellidos, Integer documento, Integer celular, String usuario, String contrasena, String repitaContrasena, String email, String licencia, String vehiculoAsignado, String huella) {
+    public Conductor(String nombres, String apellidos, Integer documento, Integer celular, String usuario, String contrasena, String email, String licencia, String vehiculoAsignado, String huella) {
         super(nombres, apellidos, documento, celular, usuario, contrasena, email);
         this.licencia = licencia;
         this.vehiculoAsignado = vehiculoAsignado;
         this.huella = huella;
+    }
+
+    public Conductor(String nombres, String apellidos, Integer documento, Integer celular, String usuario, String contrasena, String email, String licencia) {
+        super(nombres, apellidos, documento, celular, usuario, contrasena, email);
+        this.licencia = licencia;
+
     }
 
     public String getLicencia() {
