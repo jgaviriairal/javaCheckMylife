@@ -39,7 +39,8 @@ public class Main {
                                 System.out.println("---1. INICIA SESIÓN------------");
                                 System.out.println("---2. REGISTRATE---------------");
                                 System.out.println("---3. VOLVER AL MENU ANTERIOR--");
-                                 opcionC = sc.nextInt();
+                                System.out.print("Opción : ");
+                                opcionC = sc.nextInt();
                                 sc.nextLine();
                                 switch (opcionC){
                                     case 1:
@@ -67,13 +68,13 @@ public class Main {
                                         System.out.print("Email :  ");
                                         String email =sc.nextLine();
 
-                                        if (contrasena.equals(repitaContrasena)  ) {
+                                        if (contrasena.equals(repitaContrasena ) && nuevoCon.buscarXDocumento(documento).isEmpty()  ) {
                                             nuevoCon.agregarConductor(new Conductor(nombres, apellidos, documento, celular, usuario, contrasena, email, licencia));
                                             System.out.println("conducto agregado...");
                                             volverInicioC = true;
                                         }
                                         else {
-                                            System.out.println("las constraseñas deben ser iguales");
+                                            System.out.println("las constraseñas deben ser iguales o el usuario ya exite... intentelo nuevamente");
                                             volverInicioC = true;
                                         }
                                         break;
