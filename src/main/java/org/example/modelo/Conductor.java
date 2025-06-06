@@ -22,6 +22,11 @@ public class Conductor extends Persona implements IAsignacionRuta {
 
     }
 
+    public Conductor(String nombres, Integer documento) {
+        super(nombres, documento);
+
+    }
+
     public String getLicencia() {
         return licencia;
     }

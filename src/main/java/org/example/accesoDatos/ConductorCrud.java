@@ -3,6 +3,8 @@ package org.example.accesoDatos;
 import org.example.modelo.Conductor;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConductorCrud {
     /*Variables para la conexion a la bd
@@ -55,7 +57,32 @@ public class ConductorCrud {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+    public List<Conductor> buscarXDocumento(Integer documento){
+        List<Conductor>  lConductor =new ArrayList<>();
+        String sql = "Select d.id_conductor as id, p.documento as documento,p.nombres as nombres from conductores d join personas p on p.id_persona = d.id_persona where p.documento = ? ";
+        try (
+                Connection con = conectarBD();
+                PreparedStatement doc =con.prepareStatement(sql);
+                )
+        {
+           doc.setInt(1,documento);
+           ResultSet rsDoc = doc.executeQuery();
+            // Recorrer el resultset y pasar cada registro al conductor
+            while (rsDoc.next()){
+                Conductor cond = new Conductor(
+                        rsDoc.getString("nombres"),
+                        rsDoc.getInt("documento")
+                );
+                lConductor.add(cond);
+            }
+
+        } catch (SQLException e) {
+           e.printStackTrace();
+        }
+        return lConductor;
+    }
+
+
 
 }
