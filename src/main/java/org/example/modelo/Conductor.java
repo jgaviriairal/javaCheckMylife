@@ -79,4 +79,8 @@ public class Conductor extends Persona implements IAsignacionRuta {
     public void IniciarSesion(String usuario, String contrasena){
         System.out.println("el usuario: "+getUsuario()+" ha ingresado con exito");
     }
+
+    public Conductor(String nombres, String apellidos) {
+        super(nombres, apellidos);
+    }
 }

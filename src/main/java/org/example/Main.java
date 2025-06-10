@@ -44,7 +44,23 @@ public class Main {
                                 sc.nextLine();
                                 switch (opcionC){
                                     case 1:
+
+                                        //INSTANCIAR CONDUCTOR
+                                        System.out.println("-----INICIO SESION CONDUCTOR---");
+                                        System.out.print("Usuario :  ");
+                                        String  usuarioIn =sc.nextLine();
+                                        System.out.print("Contraseña :  ");
+                                        String contrasenaIn =sc.nextLine();
+                                        Conductor inicioConductor = nuevoCon.iniciarConductor(usuarioIn, contrasenaIn);
+                                        if (inicioConductor != null){
+                                            System.out.println("Iniciaste Correctamente");
+                                            System.out.println("Bienvenido, " + inicioConductor.getNombres()+ " " + inicioConductor.getApellidos() + ".");
+                                            volverInicioC = true;
+                                        }else {
+                                            System.out.println("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
+                                        }
                                         break;
+
                                     case 2:
                                         System.out.println("---REGISTRO------");
                                         System.out.print("Nombres :  ");
