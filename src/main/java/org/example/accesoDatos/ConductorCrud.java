@@ -1,6 +1,7 @@
 package org.example.accesoDatos;
 
 import org.example.modelo.Conductor;
+import org.w3c.dom.ls.LSOutput;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -83,6 +84,30 @@ public class ConductorCrud {
         return lConductor;
     }
 
+    public Conductor buscarConductor(String usuario, String contrasena) {
+        String sql = "SELECT condu.id_conductor as id, perso.nombres as nombres, perso.apellidos as apellido, " +
+                " perso.usuario, perso.contrasena FROM conductores condu " +
+                " JOIN personas perso ON condu.id_persona = perso.id_persona " +
+                " WHERE perso.usuario = ? AND perso.contrasena = ?";
+        try (
+                Connection conex = conectarBD();
+                PreparedStatement persona1 = conex.prepareStatement(sql);
+        ) {
+            persona1.setString(1, usuario);
+            persona1.setString(2, contrasena);
+            ResultSet result = persona1.executeQuery();
+
+            if (result.next()){
+                return new Conductor(
+                        result.getString("nombres"),
+                        result.getString("apellido")
+                        );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 }
