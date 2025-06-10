@@ -1,5 +1,9 @@
 package org.example.modelo;
 
+import org.example.accesoDatos.ConductorCrud;
+
+import java.util.Scanner;
+
 public class Conductor extends Persona implements IAsignacionRuta {
     private String licencia;
     private String vehiculoAsignado;
@@ -25,6 +29,9 @@ public class Conductor extends Persona implements IAsignacionRuta {
     public Conductor(String nombres, Integer documento) {
         super(nombres, documento);
 
+    }
+    public Conductor(String nombres, String apellido){
+        super(nombres, apellido);
     }
 
     public String getLicencia() {
@@ -76,11 +83,64 @@ public class Conductor extends Persona implements IAsignacionRuta {
         System.out.println("el conductor: "+getNombres()+" del vehiculo: "+asignarVehiculo.getPlaca()+" esta conduciendo bien");
     }
 
-    public void IniciarSesion(String usuario, String contrasena){
-        System.out.println("el usuario: "+getUsuario()+" ha ingresado con exito");
-    }
 
-    public Conductor(String nombres, String apellidos) {
-        super(nombres, apellidos);
-    }
+    public void IniciarSesion(){
+
+        ConductorCrud iniCond= new ConductorCrud();
+        Scanner sc =new Scanner(System.in);
+
+        //Pide los datos del usuario o condctor
+        System.out.println("-----INICIO SESION CONDUCTOR---");
+        System.out.print("Usuario :  ");
+        String  usuarioIn =sc.nextLine();
+        System.out.print("Contraseña :  ");
+        String contrasenaIn =sc.nextLine();
+
+        Conductor conductor= iniCond.buscarConductor(usuarioIn, contrasenaIn);
+
+        if (conductor != null){
+            System.out.println("Iniciaste Correctamente");
+            System.out.println("Bienvenido, " +conductor.getNombres() + " " + conductor.getApellidos() + ".");
+
+        }else {
+            System.out.println("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
+        }
+
+        }
+
+        public void Registro(){
+            ConductorCrud cond=new ConductorCrud();
+            Scanner sc =new Scanner(System.in);
+            System.out.println("---REGISTRO------");
+            System.out.print("Nombres :  ");
+            String nombres =sc.nextLine();
+            System.out.print("Apellidos :  ");
+            String apellidos =sc.nextLine();
+            System.out.print("Documento :  ");
+            int documento =sc.nextInt();
+            sc.nextLine();
+            System.out.print("celular :  ");
+            int celular =sc.nextInt();
+            sc.nextLine();
+            System.out.print("Licencia :  ");
+            String  licencia =sc.nextLine();
+            System.out.print("Usuario :  ");
+            String  usuario =sc.nextLine();
+            System.out.print("Contraseña :  ");
+            String contrasena =sc.nextLine();
+            System.out.print("Repita Contraseña :  ");
+            String repitaContrasena =sc.nextLine();
+            System.out.print("Email :  ");
+            String email =sc.nextLine();
+
+            if (contrasena.equals(repitaContrasena ) && cond.buscarXDocumento(documento).isEmpty()  ) {
+                cond.agregarConductor(new Conductor(nombres, apellidos, documento, celular, usuario, contrasena, email, licencia));
+                System.out.println("conducto agregado...");
+
+            }
+            else {
+                System.out.println("las constraseñas deben ser iguales o el usuario ya exite... intentelo nuevamente");
+            }
+        }
+
 }

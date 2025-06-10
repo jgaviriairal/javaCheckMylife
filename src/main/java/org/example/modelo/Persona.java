@@ -27,6 +27,11 @@ public abstract class Persona implements IIniciarSesion,IMonitoreo{
         this.documento = documento;
     }
 
+    public  Persona(String nombres, String apellido){
+        this.nombres = nombres;
+        this.apellidos = apellido;
+    }
+
     public String getNombres() {
         return nombres;
     }

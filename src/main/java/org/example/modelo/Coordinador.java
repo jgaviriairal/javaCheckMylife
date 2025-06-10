@@ -24,7 +24,7 @@ public class Coordinador extends Persona implements IAsignacionRuta {
         System.out.println("Ruta ingresada por el coordinador: " + fruta.obtenerInfo());
     }
     @Override
-    public void IniciarSesion(String usuario, String contrasena) {
+    public void IniciarSesion() {
         System.out.println("hola iniciaste sesión"+ this.getNombres());
     }
 

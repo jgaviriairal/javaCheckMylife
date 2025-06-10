@@ -14,6 +14,7 @@ public class Main {
 
         System.out.println("holaaaa");
         Scanner sc =new Scanner(System.in);
+        Conductor con=new Conductor();
         ConductorCrud nuevoCon = new ConductorCrud();
         Connection cnx = null;
         try{
@@ -45,54 +46,15 @@ public class Main {
                                 switch (opcionC){
                                     case 1:
 
-                                        //INSTANCIAR CONDUCTOR
-                                        System.out.println("-----INICIO SESION CONDUCTOR---");
-                                        System.out.print("Usuario :  ");
-                                        String  usuarioIn =sc.nextLine();
-                                        System.out.print("Contraseña :  ");
-                                        String contrasenaIn =sc.nextLine();
-                                        Conductor inicioConductor = nuevoCon.iniciarConductor(usuarioIn, contrasenaIn);
-                                        if (inicioConductor != null){
-                                            System.out.println("Iniciaste Correctamente");
-                                            System.out.println("Bienvenido, " + inicioConductor.getNombres()+ " " + inicioConductor.getApellidos() + ".");
-                                            volverInicioC = true;
-                                        }else {
-                                            System.out.println("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
-                                        }
-                                        break;
+                                        // LLama el metodo iniciar sesion conductor
+                                        con.IniciarSesion();
+                                        volverInicioC=true;
+                                 break;
 
                                     case 2:
-                                        System.out.println("---REGISTRO------");
-                                        System.out.print("Nombres :  ");
-                                        String nombres =sc.nextLine();
-                                        System.out.print("Apellidos :  ");
-                                        String apellidos =sc.nextLine();
-                                        System.out.print("Documento :  ");
-                                        int documento =sc.nextInt();
-                                        sc.nextLine();
-                                        System.out.print("celular :  ");
-                                        int celular =sc.nextInt();
-                                        sc.nextLine();
-                                        System.out.print("Licencia :  ");
-                                        String  licencia =sc.nextLine();
-                                        System.out.print("Usuario :  ");
-                                        String  usuario =sc.nextLine();
-                                        System.out.print("Contraseña :  ");
-                                        String contrasena =sc.nextLine();
-                                        System.out.print("Repita Contraseña :  ");
-                                        String repitaContrasena =sc.nextLine();
-                                        System.out.print("Email :  ");
-                                        String email =sc.nextLine();
-
-                                        if (contrasena.equals(repitaContrasena ) && nuevoCon.buscarXDocumento(documento).isEmpty()  ) {
-                                            nuevoCon.agregarConductor(new Conductor(nombres, apellidos, documento, celular, usuario, contrasena, email, licencia));
-                                            System.out.println("conducto agregado...");
-                                            volverInicioC = true;
-                                        }
-                                        else {
-                                            System.out.println("las constraseñas deben ser iguales o el usuario ya exite... intentelo nuevamente");
-                                            volverInicioC = true;
-                                        }
+                                        // se lllama la funcion Reggistro de la clase conductor
+                                        con.Registro();
+                                        volverInicioC = true;
                                         break;
                                     case 3:
                                         System.out.println("te devolviste");
