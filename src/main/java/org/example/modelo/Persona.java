@@ -82,4 +82,7 @@ public abstract class Persona implements IIniciarSesion,IMonitoreo{
     public void setEmail(String email) {
         this.email = email;
     }
+    public  Persona(String nombres, String apellidos){
+
+    }
 }
