@@ -45,10 +45,12 @@ public class Main {
                                 sc.nextLine();
                                 switch (opcionC){
                                     case 1:
+
                                         // LLama el metodo iniciar sesion conductor
                                         con.IniciarSesion();
                                         volverInicioC=true;
-                                        break;
+                                 break;
+
                                     case 2:
                                         // se lllama la funcion Reggistro de la clase conductor
                                         con.Registro();

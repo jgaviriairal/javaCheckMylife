@@ -84,7 +84,9 @@ public class ConductorCrud {
         return lConductor;
     }
 
+
     public Conductor buscarConductor(String usuario, String contrasena) {
+
         String sql = "SELECT condu.id_conductor as id, perso.nombres as nombres, perso.apellidos as apellido, " +
                 " perso.usuario, perso.contrasena FROM conductores condu " +
                 " JOIN personas perso ON condu.id_persona = perso.id_persona " +
@@ -101,6 +103,7 @@ public class ConductorCrud {
                 return new Conductor(
                         result.getString("nombres"),
                         result.getString("apellido")
+
                         );
             }
         } catch (SQLException e) {
@@ -108,6 +111,5 @@ public class ConductorCrud {
         }
         return null;
     }
-
 
 }

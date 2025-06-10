@@ -83,6 +83,7 @@ public class Conductor extends Persona implements IAsignacionRuta {
         System.out.println("el conductor: "+getNombres()+" del vehiculo: "+asignarVehiculo.getPlaca()+" esta conduciendo bien");
     }
 
+
     public void IniciarSesion(){
 
         ConductorCrud iniCond= new ConductorCrud();
@@ -141,4 +142,5 @@ public class Conductor extends Persona implements IAsignacionRuta {
                 System.out.println("las constraseñas deben ser iguales o el usuario ya exite... intentelo nuevamente");
             }
         }
+
 }
