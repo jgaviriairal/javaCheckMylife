@@ -3,6 +3,10 @@ package org.example;
 import org.example.accesoDatos.ConductorCrud;
 import org.example.modelo.Conductor;
 
+import org.example.accesoDatos.CoordinadorCrud;
+import org.example.modelo.Coordinador;
+
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -16,6 +20,8 @@ public class Main {
         Scanner sc =new Scanner(System.in);
         Conductor con=new Conductor();
         ConductorCrud nuevoCon = new ConductorCrud();
+        Coordinador coordi = new Coordinador();
+        CoordinadorCrud nuevoCooordi = new CoordinadorCrud();
         Connection cnx = null;
         try{
             cnx =nuevoCon.conectarBD();
@@ -81,8 +87,13 @@ public class Main {
                                 sc.nextLine();
                                 switch (opcionD){
                                     case 1:
-                                        break;
+                                        // LLama el metodo iniciar sesion conductor
+                                        coordi.IniciarSesion();
+                                        volverInicioD=true;
                                     case 2:
+                                        // se lllama la funcion Reggistro de la clase conductor
+                                        coordi.Registro();
+                                        volverInicioD = true;
                                         break;
                                     case 3:
                                         System.out.println("te devolviste");

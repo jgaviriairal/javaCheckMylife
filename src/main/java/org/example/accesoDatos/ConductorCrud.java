@@ -1,7 +1,6 @@
 package org.example.accesoDatos;
 
 import org.example.modelo.Conductor;
-import org.w3c.dom.ls.LSOutput;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ public class ConductorCrud {
         String sql = "Select d.id_conductor as id, p.documento as documento,p.nombres as nombres from conductores d join personas p on p.id_persona = d.id_persona where p.documento = ? ";
         try (
                 Connection con = conectarBD();
-                PreparedStatement doc =con.prepareStatement(sql);
+                PreparedStatement doc = con.prepareStatement(sql);
                 )
         {
            doc.setInt(1,documento);
