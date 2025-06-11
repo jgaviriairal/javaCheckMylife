@@ -110,5 +110,53 @@ public class ConductorCrud {
         }
         return null;
     }
+    public void actualizarConductor(Conductor conductorActualizado) {
+        String sqlBuscar = "SELECT p.id_persona, d.id_conductor FROM personas p JOIN conductores d ON p.id_persona = d.id_persona WHERE p.documento = ?";
+        String sqlactualizaPersona = "UPDATE personas SET nombres=?, apellidos=?, celular=?, usuario=?, contrasena=?, email=? WHERE id_persona=?";
+        String sqlactualizaConductor = "UPDATE conductores SET licencia=? WHERE id_conductor=?";
+
+        try (
+                Connection cnx = conectarBD();
+                PreparedStatement psBuscar = cnx.prepareStatement(sqlBuscar)
+        ) {
+            // busca los IDs (id_persona y id_conductor) usando el documento
+            psBuscar.setInt(1, conductorActualizado.getDocumento());
+            ResultSet rs = psBuscar.executeQuery();
+
+            if (rs.next()) {
+                int idPersona = rs.getInt("id_persona");
+                int idConductor = rs.getInt("id_conductor");
+
+                //  Actualizar los datos en la tabla personas
+                try (PreparedStatement actualizaPersona = cnx.prepareStatement(sqlactualizaPersona)) {
+                    actualizaPersona.setString(1, conductorActualizado.getNombres());
+                    actualizaPersona.setString(2, conductorActualizado.getApellidos());
+                    actualizaPersona.setInt(3, conductorActualizado.getCelular());
+                    actualizaPersona.setString(4, conductorActualizado.getUsuario());
+                    actualizaPersona.setString(5, conductorActualizado.getContrasena());
+                    actualizaPersona.setString(6, conductorActualizado.getEmail());
+                    actualizaPersona.setInt(7, idPersona);
+
+                    actualizaPersona.executeUpdate();
+                }
+
+                //  Actualizar la licencia en la tabla conductores
+                try (PreparedStatement actualizaConductor = cnx.prepareStatement(sqlactualizaConductor)) {
+                    actualizaConductor.setString(1, conductorActualizado.getLicencia());
+                    actualizaConductor.setInt(2, idConductor);
+
+                    actualizaConductor.executeUpdate();
+                }
+
+                System.out.println("Datos actualizados correctamente para el documento: " + conductorActualizado.getDocumento());
+
+            } else {
+                System.out.println("No se encontró ningún conductor con documento: " + conductorActualizado.getDocumento());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

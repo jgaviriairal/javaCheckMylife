@@ -42,7 +42,8 @@ public class Main {
                                 System.out.println("---------CONDUCTOR-------------");
                                 System.out.println("---1. INICIA SESIÓN------------");
                                 System.out.println("---2. REGISTRATE---------------");
-                                System.out.println("---3. VOLVER AL MENU ANTERIOR--");
+                                System.out.println("---3. ACTUALIZAR---------------");
+                                System.out.println("---4. VOLVER AL MENU ANTERIOR--");
                                 System.out.print("Opción : ");
                                 opcionC = sc.nextInt();
                                 sc.nextLine();
@@ -53,11 +54,16 @@ public class Main {
                                         volverInicioC=true;
                                         break;
                                     case 2:
-                                        // se lllama la funcion Reggistro de la clase conductor
+                                        // se llama la funcion Registro de la clase conductor
                                         con.Registro();
                                         volverInicioC = true;
                                         break;
                                     case 3:
+                                        //se llama la funcion actualizar Datos de la clase conductor
+                                        con.ActualizarDatos();
+                                        volverInicioC = true;
+                                        break;
+                                    case 4:
                                         System.out.println("te devolviste");
                                         volverInicioC= true;
                                         break;
