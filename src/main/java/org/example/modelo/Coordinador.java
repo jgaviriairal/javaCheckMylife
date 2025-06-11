@@ -1,6 +1,5 @@
 package org.example.modelo;
 
-import org.example.accesoDatos.ConductorCrud;
 import org.example.accesoDatos.CoordinadorCrud;
 
 import java.util.Scanner;
@@ -53,8 +52,6 @@ public class Coordinador extends Persona implements IAsignacionRuta {
         }
 
     }
-
-
     @Override
     public void Monitoreo() {
         System.out.println("el vehiculo con el conductor :"+getNombres()+ "se encuentra en ...");
