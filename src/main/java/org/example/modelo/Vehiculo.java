@@ -7,7 +7,7 @@ public abstract class  Vehiculo implements IAsignacionRuta,IMonitoreo {
     public Vehiculo() {
     }
 
-    public Vehiculo(String marca, String placa, String modelo) {
+    public Vehiculo(String placa,String marca, String modelo) {
         this.marca = marca;
         this.placa = placa;
         this.modelo = modelo;
@@ -54,6 +54,7 @@ public abstract class  Vehiculo implements IAsignacionRuta,IMonitoreo {
     public void Monitoreo() {
 
     }
+    public abstract void ingresarVehiculo();
 
 
 }

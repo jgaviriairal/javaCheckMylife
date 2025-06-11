@@ -4,7 +4,7 @@ public class Particular extends Vehiculo {
 
     private boolean usoPersonal;
 
-    public Particular() {
+    public Particular(String placa, String marca, String modelo) {
     }
 
     public Particular(String marca, String placa, String modelo, boolean usoPersonal) {
@@ -18,6 +18,11 @@ public class Particular extends Vehiculo {
 
     public void setUsoPersonal(boolean usoPersonal) {
         this.usoPersonal = usoPersonal;
+    }
+
+    @Override
+    public void ingresarVehiculo() {
+
     }
 }
 
