@@ -88,3 +88,4 @@ public abstract class Persona implements IIniciarSesion,IMonitoreo{
         this.email = email;
     }
     }
+

@@ -1,7 +1,11 @@
 package org.example;
 
 import org.example.accesoDatos.ConductorCrud;
+import org.example.accesoDatos.VehiculoCrud;
 import org.example.modelo.Conductor;
+import org.example.modelo.Particular;
+import org.example.modelo.Privado;
+import org.example.modelo.Vehiculo;
 
 import org.example.accesoDatos.CoordinadorCrud;
 import org.example.modelo.Coordinador;
@@ -19,9 +23,12 @@ public class Main {
         System.out.println("holaaaa");
         Scanner sc =new Scanner(System.in);
         Conductor con=new Conductor();
+        Privado veh = new Privado();
         ConductorCrud nuevoCon = new ConductorCrud();
+        VehiculoCrud vehCrud =new VehiculoCrud();
         Coordinador coordi = new Coordinador();
-        CoordinadorCrud nuevoCooordi = new CoordinadorCrud();
+        
+
         Connection cnx = null;
         try{
             cnx =nuevoCon.conectarBD();
@@ -83,14 +90,47 @@ public class Main {
                                 System.out.println("---1. INICIA SESIÓN------------");
                                 System.out.println("---2. REGISTRATE---------------");
                                 System.out.println("---3. VOLVER AL MENU ANTERIOR--");
-                                 opcionD = sc.nextInt();
+                                System.out.print("Opción : ");
+                                opcionD = sc.nextInt();
                                 sc.nextLine();
                                 switch (opcionD){
                                     case 1:
-                                        // LLama el metodo iniciar sesion conductor
                                         coordi.IniciarSesion();
-                                        volverInicioD = true;
-                                         break;
+                                        int opcionCoo;
+                                        boolean  volverInicioCoor = false;
+                                        do {
+                                            System.out.println("--------- MENU COORDINADOR-----------");
+                                            System.out.println("---1. Ingresa Vehiculo------------");
+                                            System.out.println("---2. Buscar vehiculos---------------");
+                                            System.out.println("---3. VOLVER AL MENU ANTERIOR--");
+                                            System.out.print("Opción : ");
+                                            opcionCoo = sc.nextInt();
+                                            sc.nextLine();
+                                            switch (opcionCoo){
+                                            case 1:
+
+                                                veh.ingresarVehiculo();
+                                                break;
+                                                case 2:
+                                                veh.buscarVehiculo();
+                                                    break;
+                                                case 3 :
+                                                    System.out.println("te devolviste");
+                                                    volverInicioCoor= true;
+                                                    break;
+
+                                                    default:{
+                                                        System.out.println("Opción incorrecta....");
+                                                    }
+                                            }
+
+                                            }
+                                        while (!volverInicioCoor);
+                                        break;
+
+                                      
+                                       
+      
                                     case 2:
                                         // se lllama la funcion Reggistro de la clase conductor
                                         coordi.Registro();
