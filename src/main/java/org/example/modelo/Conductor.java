@@ -142,5 +142,44 @@ public class Conductor extends Persona implements IAsignacionRuta {
                 System.out.println("las constraseñas deben ser iguales o el usuario ya exite... intentelo nuevamente");
             }
         }
+    public void ActualizarDatos(){
 
+        Conductor conductorActualizado = new Conductor();
+        ConductorCrud cond=new ConductorCrud();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("---Actualizacion de datos del conductor---");
+        System.out.print("documento del conductor a actualizar: ");
+        Integer documento = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("Apellido: ");
+        String apellido = sc.nextLine();
+        System.out.print("Celular: ");
+        Integer celular = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Usuario: ");
+        String usuario = sc.nextLine();
+        System.out.print("Contraseña: ");
+        String contrasena = sc.nextLine();
+        System.out.print("E-mail: ");
+        String mail =sc.nextLine();
+        System.out.print("Licencia: ");
+        String licencia = sc.nextLine();
+
+        conductorActualizado.setDocumento(documento);
+        conductorActualizado.setNombres(nombre);
+        conductorActualizado.setApellidos(apellido);
+        conductorActualizado.setCelular(celular);
+        conductorActualizado.setUsuario(usuario);
+        conductorActualizado.setContrasena(contrasena);
+        conductorActualizado.setEmail(mail);
+        conductorActualizado.setLicencia(licencia);
+
+        cond.actualizarConductor(conductorActualizado);
+
+        System.out.println("Actualizacion de los datos del conductor realizada");
+
+    }
 }
