@@ -7,6 +7,10 @@ import org.example.modelo.Particular;
 import org.example.modelo.Privado;
 import org.example.modelo.Vehiculo;
 
+import org.example.accesoDatos.CoordinadorCrud;
+import org.example.modelo.Coordinador;
+
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -22,6 +26,8 @@ public class Main {
         Privado veh = new Privado();
         ConductorCrud nuevoCon = new ConductorCrud();
         VehiculoCrud vehCrud =new VehiculoCrud();
+        Coordinador coordi = new Coordinador();
+        
 
         Connection cnx = null;
         try{
@@ -89,6 +95,7 @@ public class Main {
                                 sc.nextLine();
                                 switch (opcionD){
                                     case 1:
+                                        coordi.IniciarSesion();
                                         int opcionCoo;
                                         boolean  volverInicioCoor = false;
                                         do {
@@ -120,7 +127,14 @@ public class Main {
                                             }
                                         while (!volverInicioCoor);
                                         break;
+
+                                      
+                                       
+      
                                     case 2:
+                                        // se lllama la funcion Reggistro de la clase conductor
+                                        coordi.Registro();
+                                        volverInicioD = true;
                                         break;
                                     case 3:
                                         System.out.println("te devolviste");
