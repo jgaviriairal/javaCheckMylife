@@ -1,5 +1,6 @@
 package org.example.modelo;
 
+import org.example.accesoDatos.ConductorCrud;
 import org.example.accesoDatos.CoordinadorCrud;
 
 import java.util.Scanner;
@@ -98,5 +99,43 @@ public class Coordinador extends Persona implements IAsignacionRuta {
         else {
             System.out.println("las constraseñas deben ser iguales o el usuario ya exite... intentelo nuevamente");
         }
+    }
+    public void ActualizarDatos(){
+
+        Coordinador coordinadorActualizado = new Coordinador();
+        CoordinadorCrud coordi = new CoordinadorCrud();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("---Actualizacion de datos del Coordinador---");
+        System.out.print("documento del coordinador a actualizar: ");
+        Integer documento = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("Apellido: ");
+        String apellido = sc.nextLine();
+        System.out.print("Celular: ");
+        Integer celular = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Usuario: ");
+        String usuario = sc.nextLine();
+        System.out.print("Contraseña: ");
+        String contrasena = sc.nextLine();
+        System.out.print("E-mail: ");
+        String mail =sc.nextLine();
+
+        coordinadorActualizado.setDocumento(documento);
+        coordinadorActualizado.setNombres(nombre);
+        coordinadorActualizado.setApellidos(apellido);
+        coordinadorActualizado.setCelular(celular);
+        coordinadorActualizado.setUsuario(usuario);
+        coordinadorActualizado.setContrasena(contrasena);
+        coordinadorActualizado.setEmail(mail);
+
+
+        coordi.actualizarCoordinador(coordinadorActualizado);
+
+        System.out.println("Actualizacion de los datos del coordinador realizada");
+
     }
 }
