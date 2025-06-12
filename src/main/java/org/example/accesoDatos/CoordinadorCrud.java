@@ -109,5 +109,54 @@ public class CoordinadorCrud {
             }
             return null;
         }
+    public void actualizarCoordinador(Coordinador coordinadorActualizado) {
+        String sqlBuscar = "SELECT p.id_persona, d.id_coordinador FROM personas p JOIN coordinadores d ON p.id_persona = d.id_persona WHERE p.documento = ?";
+        String sqlactualizaPersona = "UPDATE personas SET nombres=?, apellidos=?, celular=?, usuario=?, contrasena=?, email=? WHERE id_persona=?";
+        String sqlactualizaCoordinador = "UPDATE coordinadores SET aerea=? WHERE id_coordinador=?";
 
+        try (
+                Connection cnx = conectarBD();
+                PreparedStatement psBuscar = cnx.prepareStatement(sqlBuscar)
+        ) {
+            // busca los IDs (id_persona y id_coordinador) usando el documento
+            psBuscar.setInt(1, coordinadorActualizado.getDocumento());
+            ResultSet rs = psBuscar.executeQuery();
+
+            if (rs.next()) {
+                int idPersona = rs.getInt("id_persona");
+                int idCoordinador = rs.getInt("id_coordinador");
+
+                //  Actualizar los datos en la tabla personas
+                try (PreparedStatement actualizaPersona = cnx.prepareStatement(sqlactualizaPersona)) {
+                    actualizaPersona.setString(1, coordinadorActualizado.getNombres());
+                    actualizaPersona.setString(2, coordinadorActualizado.getApellidos());
+                    actualizaPersona.setInt(3, coordinadorActualizado.getCelular());
+                    actualizaPersona.setString(4, coordinadorActualizado.getUsuario());
+                    actualizaPersona.setString(5, coordinadorActualizado.getContrasena());
+                    actualizaPersona.setString(6, coordinadorActualizado.getEmail());
+                    actualizaPersona.setInt(7, idPersona);
+
+                    actualizaPersona.executeUpdate();
+                }
+                /*
+                //  Actualizar la area en la tabla coordinadores
+                try (PreparedStatement actualizaCoordinador = cnx.prepareStatement(sqlactualizaCoordinador)) {
+                    actualizaCoordinador.setString(1, coordinadorActualizado.getArea());
+                    actualizaCoordinador.setInt(2, idCoordinador);
+
+                    actualizaCoordinador.executeUpdate();
+                } */
+
+                System.out.println("Datos actualizados correctamente para el documento: " + coordinadorActualizado.getDocumento());
+
+            } else {
+                System.out.println("No se encontró ningún coordinador con documento: " + coordinadorActualizado.getDocumento());
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+
+
+}

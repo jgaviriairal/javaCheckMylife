@@ -80,6 +80,7 @@ public class Main {
                                 System.out.println("---------COORDINADOR-----------");
                                 System.out.println("---1. INICIA SESIÓN------------");
                                 System.out.println("---2. REGISTRATE---------------");
+                                System.out.println("---3. ACTUALIZAR---------------");
                                 System.out.println("---3. VOLVER AL MENU ANTERIOR--");
                                 System.out.print("Opción : ");
                                 opcionD = sc.nextInt();
@@ -115,11 +116,16 @@ public class Main {
                                         }while (!volverInicioCoor);
                                         break;
                                         case 2:
-                                            // se llama la funcion Reggistro de la clase conductor
+                                            // se llama la funcion Reggistro de la clase coordinador
                                             coordi.Registro();
                                             volverInicioD = true;
                                         break;
-                                        case 3:
+                                    case 3:
+                                        //se llama la funcion actualizar Datos de la clase coordinador
+                                        coordi.ActualizarDatos();
+                                        volverInicioD = true;
+                                        break;
+                                        case 4:
                                             System.out.println("te devolviste");
                                             volverInicioD= true;
                                         break;
